@@ -29,7 +29,7 @@ class ApiController extends Controller
             DB::commit();
             return response()->json([
                 'status' => 200,
-                'error' => 'Data inserted proper'
+                'success' => 'Data inserted proper'
             ]);
         } catch (\Exception $e) {
             Log::info($e);
