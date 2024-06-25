@@ -50,6 +50,7 @@ class DeviceRepository
 			$device->graph_title = $req->graph_title;
 			$device->status = $req->status;
 			if ($device->save()) {
+				DB::commit();
 				return true;
 			}
 		} catch (\Exception $e) {
