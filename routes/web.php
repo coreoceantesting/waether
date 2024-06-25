@@ -54,8 +54,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth', 'prevent-back-history']], function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('admin/hightide/import', ImportController::class);
-    Route::get('/setImport', 'ImportController@setImport');
-    Route::post('/importRegister', 'ImportController@importRegister');
+    Route::get('/setImport', [ImportController::class, 'setImport']);
+    Route::post('/importRegister', [ImportController::class, 'importRegister']);
     Route::post('admin/hightide/import', [ImportController::class, 'importHighTide'])->name('importhightide');
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/setting', [SettingController::class, 'list']);
