@@ -20,7 +20,15 @@ if(date('H:i:s') >= '00:00:00' && date('H:i:s') <= '08:15:00'){
     <div class="text"><p style="color: white" class="color-dark">{{$last15min}} mm <span style="font-size: 12px; color: white">Last 15 min</span></p></div>
     <p style="font-size: 15px; color: white">Progressive Rain (From 8:30 AM) : {{$prograsiveRain}} mm</p>
     @php
-        $last24hours = DB::table('weathers')->where('location_id', $location->id)->where('datetime', '>=', date('Y-m-d H:i:s', strtotime('-1 days', strtotime($search))))->where('datetime', '<=', date('Y-m-d H:i:s', strtotime($search)))->avg('rain');
+        if (date('H:i' < '08:30')) {
+			$startDate = date('Y-m-d H:i:s', strtotime('-2 days 08:30:00'));
+			$enddateDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
+		} else {
+			$startDate = date('Y-m-d H:i:s', strtotime('-1 days 08:30:00'));
+			$enddateDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
+		}
+
+        $last24hours = DB::table('weathers')->where('location_id', $location->id)->where('datetime', '>=', $startDate)->where('datetime', '<=', $enddateDate)->avg('rain');
     @endphp
     <p style="font-size: 15px; color: white"  class="color-dark">Last 24 Hours Rain : {{round($last24hours, 2)}} mm</p>
 
