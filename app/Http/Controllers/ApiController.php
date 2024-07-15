@@ -20,10 +20,17 @@ class ApiController extends Controller
 
                 $check = Weather::where('datetime', $data['date'] . ' ' . $data['time'])
                     ->where('location_id', $data['location_id'])
-                    ->doesntExist();
+                    ->first();
 
                 if ($check) {
                     Weather::create($data);
+                } else {
+                    Weather::where('id', $check->id)->where('location_id', $data['location_id'])
+                        ->update([
+                            'date' => $data['date'],
+                            'time' => $data['time'],
+                            'datetime' => $data['datetime']
+                        ]);
                 }
             }
             DB::commit();
