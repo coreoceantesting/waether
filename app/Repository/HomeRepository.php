@@ -49,8 +49,16 @@ class HomeRepository
 
 	public function getLastDayRain($search)
 	{
-		$lastdayRain = Weather::where('datetime', '<', date('Y-m-d H:i:s', strtotime($search)))
-			->where('datetime', '>=', date('Y-m-d H:i:s', strtotime('-1 days', strtotime($search))))
+		if (date('H:i' < '08:30')) {
+			$startDate = date('Y-m-d H:i:s', strtotime('-2 days 08:30:00'));
+			$enddateDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
+		} else {
+			$startDate = date('Y-m-d H:i:s', strtotime('-1 days 08:30:00'));
+			$enddateDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
+		}
+
+		$lastdayRain = Weather::where('datetime', '<', $enddateDate)
+			->where('datetime', '>=', $startDate)
 			->avg('rain');
 
 		return $lastdayRain;
