@@ -31,6 +31,8 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('data', [StoreWeatherController::class, 'storeWeatherData']);
 Route::get('filter', [WebsiteController::class, 'filter'])->name('filter');
 Route::post('filter', [WebsiteController::class, 'getFilter']);
+Route::get('export', [WebsiteController::class, 'export'])->name('export');
+Route::get('weather-pdf', [WebsiteController::class, 'generatePdf'])->name('generate-pdf');
 Route::get('weather-info/filter', [WebsiteController::class, 'filterWeatherInfo'])->name('filterweatherinfo');
 Route::post('weather-info/filter', [WebsiteController::class, 'getFilterWeatherInfo']);
 Route::get('hightide', [HomeController::class, 'hightide']);

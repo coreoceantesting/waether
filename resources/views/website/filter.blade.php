@@ -38,24 +38,24 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="contact-block bg-white-1">
-                    <form action="{{route('filter')}}" method="GET">
+                    <form action="{{route('filter')}}" id="filterform" method="GET">
                    
                         <div class="row mb-4">
 
                                 <div class="col-lg-3 col-12">
                                     <div class="form-group">
                                         <label class="text-dark">Select Start Date</label>
-                                        <input type="datetime-local" class="form-control p-2" value="{{date('d-m-Y')}}"  id="start_date" placeholder="Select start date" name="start_date" autocomplete="off" />
+                                        <input type="datetime-local" class="form-control p-2" value="{{date('Y-m-d 12:00:00')}}"  id="start_date" placeholder="Select start date" name="start_date" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-12">
                                     <div class="form-group">
                                         <label class="text-dark">Select End Date</label>
-                                        <input type="datetime-local" class="form-control p-2" value="{{date('d-m-Y')}}" id="end_date" placeholder="Select end date" name="end_date" autocomplete="off" />
+                                        <input type="datetime-local" class="form-control p-2" value="{{date('Y-m-d H:i')}}" id="end_date" placeholder="Select end date" name="end_date" autocomplete="off" />
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-12">
+                                <div class="col-lg-2 col-12">
                                     <div class="form-group">
                                         <label class="text-dark">Select Location</label>
                                         <select class="form-select" id="location" name="location">
@@ -66,15 +66,21 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-12">
-                                    <div style="visibility: hidden;">Filter</div>
-                                    <button type='button' class="btn btn-primary" id="search">Search</button>
+                                <div class="col-lg-3 col-12">
+                                    {{-- <div style="visibility: hidden"></div> --}}
+                                    <div class="d-flex mt-4">
+                                        <button type='button' class="btn btn-primary" id="search">Search</button>
+                                        &nbsp;
+                                        <button type='button' class="btn btn-success" id="export">Export As Excel</button>
+                                        &nbsp;
+                                        <button type='button' class="btn btn-warning text-white" id="pdf">PDF</button>
+                                    </div>
                                 </div>
 
                         </div>
                     </form>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="datatable">
+                            <table class="table table-bordered table-striped text-center" id="datatable">
                                 <thead class="table-info">
                                     <tr>
                                         <th>Sr No.</th>
@@ -148,7 +154,25 @@
                 $('#datatable').DataTable().destroy();
                 
                 getWeatherDetails(startDate, endDate, location)
-            })
+            });
+
+            $('#export').click(function(){
+                let startDate = $('#start_date').val()
+                let endDate = $('#end_date').val()
+                let location = $('#location').val()
+                let filter = $('#filterform').serialize();
+                window.location.href = "{{ url('export') }}?"+filter;
+            });
+
+            $('#pdf').click(function(){
+                let startDate = $('#start_date').val()
+                let endDate = $('#end_date').val()
+                let location = $('#location').val()
+                let filter = $('#filterform').serialize();
+                window.open("{{ url('weather-pdf') }}?" + filter, '_blank');
+                // window.location.href = "{{ url('weather-pdf') }}?"+filter;
+            });
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -43,9 +43,7 @@
 
                                     <div class="col-lg-3 col-12">
                                         <div class="form-group">
-                                            <center><input type="text" class="form-control" 
-                                            value="{{isset(Request()->start_date) ? date('d-m-Y', strtotime(Request()->start_date)) : date('d-m-Y')}}" autocomplete="off"  id="start_date" placeholder="Select start date" name="start_date" />
-                                          </center>
+                                            <input type="text" class="form-control" value="{{isset(Request()->start_date) ? date('d-m-Y', strtotime(Request()->start_date)) : date('d-m-Y')}}" autocomplete="off"  id="start_date" placeholder="Select start date" name="start_date" />
                                         </div>
                                     </div>
                                    
@@ -56,7 +54,7 @@
                             </div>
                         </form>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="datatablenew">
+                            <table class="table table-bordered text-center table-striped" id="datatablenew">
                                 <thead class="table-info">
                                     <tr>
                                         <th>Sr no.</th>
