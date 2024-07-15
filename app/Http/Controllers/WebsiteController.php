@@ -29,7 +29,6 @@ class WebsiteController extends Controller
 
     public function filter(Request $req)
     {
-
         $locations = Location::where('status', 1)->select('id', 'name')->get();
 
         return view('website.filter')->with(['locations' => $locations]);
@@ -38,7 +37,6 @@ class WebsiteController extends Controller
     public function getFilter(Request $req)
     {
         if ($req->ajax()) {
-            //  function to get inward and outward details
             $weathers = Weather::join('locations', 'weathers.location_id', '=', 'locations.id')
                 ->select('locations.name as name', 'weathers.date', 'weathers.time', 'weathers.rain', 'weathers.wind_speed', 'weathers.in_temp', 'weathers.in_hum', 'weathers.datetime', 'weathers.location_id', 'weathers.hi_temp', 'weathers.low_temp')
                 ->where('locations.status', 1)

@@ -45,13 +45,13 @@
                                 <div class="col-lg-3 col-12">
                                     <div class="form-group">
                                         <label class="text-dark">Select Start Date</label>
-                                        <input type="datetime-local" class="form-control p-2" value="{{date('Y-m-d 12:00:00')}}"  id="start_date" placeholder="Select start date" name="start_date" autocomplete="off" />
+                                        <input type="datetime-local" class="form-control p-2" id="start_date" placeholder="Select start date" name="start_date" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-12">
                                     <div class="form-group">
                                         <label class="text-dark">Select End Date</label>
-                                        <input type="datetime-local" class="form-control p-2" value="{{date('Y-m-d H:i')}}" id="end_date" placeholder="Select end date" name="end_date" autocomplete="off" />
+                                        <input type="datetime-local" class="form-control p-2" id="end_date" placeholder="Select end date" name="end_date" autocomplete="off" />
                                     </div>
                                 </div>
 
