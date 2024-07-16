@@ -40,7 +40,7 @@ class WebsiteController extends Controller
             $weathers = Weather::join('locations', 'weathers.location_id', '=', 'locations.id')
                 ->select('locations.name as name', 'weathers.date', 'weathers.time', 'weathers.rain', 'weathers.wind_speed', 'weathers.in_temp', 'weathers.in_hum', 'weathers.datetime', 'weathers.location_id', 'weathers.hi_temp', 'weathers.low_temp')
                 ->where('locations.status', 1)
-                ->orderBy('weathers.id', 'desc');
+                ->orderBy('weathers.datetime', 'desc');
 
             if ($req->location != "") {
                 $weathers = $weathers->where('weathers.location_id', $req->location);
@@ -89,7 +89,8 @@ class WebsiteController extends Controller
         // to get the weathers data by date
         $weathers = Weather::join('locations', 'locations.id', '=', 'weathers.location_id')
             ->where('locations.status', 1)
-            ->select('weathers.id', 'weathers.location_id', 'weathers.datetime', 'weathers.rain');
+            ->select('weathers.id', 'weathers.location_id', 'weathers.datetime', 'weathers.rain')
+            ->orderBy('weathers.datetime', 'desc');
         if (isset($req->start_date) && $req->start_date != "") {
             $weathers = $weathers->where('weathers.datetime', '>=', date('Y-m-d H:i:s', strtotime($req->start_date . ' 08:30:00')))
                 ->where('weathers.datetime', '<=', date('Y-m-d H:i:s', strtotime('+1 days', strtotime($req->start_date . ' 08:15:00'))));
