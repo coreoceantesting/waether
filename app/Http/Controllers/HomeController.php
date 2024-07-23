@@ -35,7 +35,7 @@ class HomeController extends Controller
             // to get last day of rain
             $lastdayRain =  $this->homeRepository->getLastDayRain($search);
 
-            $lastDayTotalRainAvg =  $this->homeRepository->getLastDayTotalRainAvg($search);
+            $lastDayTotalRainAvg =  $this->homeRepository->getLastDayTotalRainAvg();
 
             // to get current time of rain
             $currentRain = $this->homeRepository->getCurrentRain($search);
