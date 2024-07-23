@@ -47,11 +47,11 @@ class WebsiteController extends Controller
             }
 
             if ($req->start_date != "") {
-                $weathers = $weathers->where('weathers.datetime', '>=', date('Y-m-d h:i:s', strtotime($req->start_date)));
+                $weathers = $weathers->where('weathers.datetime', '>=', date('Y-m-d H:i:s', strtotime($req->start_date)));
             }
 
             if ($req->end_date != "") {
-                $weathers = $weathers->where('weathers.datetime', '<=', date('Y-m-d h:i:s', strtotime($req->end_date)));
+                $weathers = $weathers->where('weathers.datetime', '<=', date('Y-m-d H:i:s', strtotime($req->end_date)));
             }
 
             return DataTables::of($weathers)

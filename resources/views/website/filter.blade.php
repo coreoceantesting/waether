@@ -91,7 +91,7 @@
                                         <th>Wind Speed</th>
                                         <th>Temperature</th>
                                         <th>Low Temperature</th>
-                                        <th>Hi Temperature</th>
+                                        <th>High Temperature</th>
                                         <th>Humidity</th>
                                         <th>Progressive Rain(From 8:30 AM)</th>
                                         <th>Last 24 Hours Rain</th>
@@ -210,6 +210,8 @@
                         {
                             data: 'name',
                             name: 'locations.name',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data;
                             },
@@ -217,6 +219,8 @@
                         {
                             data: 'date',
                             name: 'weathers.date',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data;
                             },
@@ -224,6 +228,8 @@
                         {
                             data: 'time',
                             name: 'weathers.time',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data;
                             },
@@ -231,6 +237,8 @@
                         {
                             data: 'rain',
                             name: 'weathers.rain',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
@@ -238,6 +246,8 @@
                         {
                             data: 'wind_speed',
                             name: 'weathers.wind_speed',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
@@ -245,6 +255,8 @@
                         {
                             data: 'in_temp',
                             name: 'weathers.in_temp',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
@@ -252,6 +264,8 @@
                         {
                             data: 'low_temp',
                             name: 'weathers.low_temp',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
@@ -259,6 +273,8 @@
                         {
                             data: 'hi_temp',
                             name: 'weathers.hi_temp',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
@@ -266,18 +282,24 @@
                         {
                             data: 'in_hum',
                             name: 'weathers.in_hum',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
                         },
                         {
                             data: 'prograsive_rain',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },
                         },
                         {
                             data: 'lastday',
+                            orderable: false,
+                            searchable: false,
                             render: function(data, type, row){
                                  return data+"mm";
                             },

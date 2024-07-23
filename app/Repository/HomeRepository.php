@@ -63,7 +63,7 @@ class HomeRepository
 			$lastdayLocationAvg = Weather::where('datetime', '<', $endDate)
 				->where('location_id', $location->id)
 				->where('datetime', '>=', $startDate)
-				->avg('rain');
+				->sum('rain');
 
 			$totalAvg += $lastdayLocationAvg;
 		}
