@@ -54,13 +54,13 @@ class HomeRepository
 		foreach ($locations as $location) {
 			if (date('H:i' < '08:30')) {
 				$startDate = date('Y-m-d H:i:s', strtotime('-2 days 08:30:00'));
-				$enddateDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
+				$endDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
 			} else {
 				$startDate = date('Y-m-d H:i:s', strtotime('-1 days 08:30:00'));
-				$enddateDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
+				$endDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
 			}
 
-			$lastdayLocationAvg = Weather::where('datetime', '<', $enddateDate)
+			$lastdayLocationAvg = Weather::where('datetime', '<', $endDate)
 				->where('location_id', $location->id)
 				->where('datetime', '>=', $startDate)
 				->avg('rain');
@@ -73,6 +73,22 @@ class HomeRepository
 		} else {
 			return $totalAvg / count($locations);
 		}
+	}
+
+	public function getLastDayTotalRainAvg()
+	{
+		if (date('H:i' < '08:30')) {
+			$startDate = date('Y-m-d H:i:s', strtotime('-2 days 08:30:00'));
+			$endDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
+		} else {
+			$startDate = date('Y-m-d H:i:s', strtotime('-1 days 08:30:00'));
+			$endDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
+		}
+
+		$lastdayLocationAvg = Weather::where('datetime', '<', $endDate)
+			->where('datetime', '>=', $startDate)
+			->avg('rain');
+		return $lastdayLocationAvg;
 	}
 
 	public function getCurrentRain($search)

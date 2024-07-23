@@ -37,6 +37,11 @@
                                     <span class="color-dark text-start">Last 24 Hrs Rain(till 8.30 AM)</span>
                                     <span class="color-dark text-end">{{($lastdayRain) ? round($lastdayRain, 2) : 0}}mm</span>
                                 </div>
+                                
+                                <div class="d-flex align-items-center justify-content-center mb-24">
+                                    <span class="color-dark text-start">Last 24 Hrs Rain(Avg 15min)</span>
+                                    <span class="color-dark text-end">{{($lastDayTotalRainAvg) ? round($lastDayTotalRainAvg, 2) : 0}}mm</span>
+                                </div>
                                 <div class="d-flex align-items-center justify-content-center mb-24">
                                     <span class="color-dark text-start">Current Rain</span>
                                     <span class="color-dark text-end">{{($currentRain) ? round($currentRain, 2) : 0}} mm</span>
