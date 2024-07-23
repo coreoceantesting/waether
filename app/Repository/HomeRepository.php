@@ -49,19 +49,30 @@ class HomeRepository
 
 	public function getLastDayRain($search)
 	{
-		if (date('H:i' < '08:30')) {
-			$startDate = date('Y-m-d H:i:s', strtotime('-2 days 08:30:00'));
-			$enddateDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
-		} else {
-			$startDate = date('Y-m-d H:i:s', strtotime('-1 days 08:30:00'));
-			$enddateDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
+		$locations = Location::where('status', 1)->get();
+		$totalAvg = 0;
+		foreach ($locations as $location) {
+			if (date('H:i' < '08:30')) {
+				$startDate = date('Y-m-d H:i:s', strtotime('-2 days 08:30:00'));
+				$enddateDate = date('Y-m-d H:i:s', strtotime('-1 days 08:25:00'));
+			} else {
+				$startDate = date('Y-m-d H:i:s', strtotime('-1 days 08:30:00'));
+				$enddateDate = date('Y-m-d H:i:s', strtotime('08:25:00'));
+			}
+
+			$lastdayLocationAvg = Weather::where('datetime', '<', $enddateDate)
+				->where('location_id', $location->id)
+				->where('datetime', '>=', $startDate)
+				->avg('rain');
+
+			$totalAvg += $lastdayLocationAvg;
 		}
 
-		$lastdayRain = Weather::where('datetime', '<', $enddateDate)
-			->where('datetime', '>=', $startDate)
-			->avg('rain');
-
-		return $lastdayRain;
+		if ($totalAvg == 0) {
+			return 0;
+		} else {
+			return $totalAvg / count($locations);
+		}
 	}
 
 	public function getCurrentRain($search)
