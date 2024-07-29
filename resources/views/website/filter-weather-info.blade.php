@@ -92,7 +92,7 @@
                                         <td>{{ $count++ }}</td>
                                         <td>{{ date('d-m-Y', strtotime($key)) }}</td>
                                         <td>{{ date('h:i A', strtotime($key)) }}</td>
-                                        <td>{{ $sum }}mm</td>
+                                        <td>{{ round($sum, 2) }}mm</td>
                                         <td>{{ round($current/count($locations), 2) }}mm</td>
                                         <td>{{ round($weathers->where('datetime', '>=', date('Y-m-d H:i:s', strtotime(Request()->start_date.' 08:30:00')))->where('datetime', '<=', date('Y-m-d H:i:s', strtotime($key)))->avg('rain'), 2) }}mm</td>
                                         <td>{{ round($lastDay, 2) }}mm</td>
