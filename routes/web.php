@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function () {
     Route::get('/admin/hightide/edit/{id}', [DashboardController::class, 'edit']);
     Route::post('/admin/hightide/update', [DashboardController::class, 'update']);
     Route::post('/admin/hightide/delete', [DashboardController::class, 'delete']);
+    Route::post('/admin/logout', [DashboardController::class, 'logout'])->name('admin.logout');
 
     // Route::get('/admin/contact/list', [ContactController::class, 'list']);
     // Route::post('/admin/contact/delete', [ContactController::class, 'delete']);

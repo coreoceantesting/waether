@@ -9,8 +9,9 @@ class PollutionAirQualityRepository
 {
 	public function list($location)
 	{
-		return AirQualityIndex::where('pollution_location_id', $location)
-			->select('id', 'so2', 'nox', 'pm2', 'rspm', 'date', 'co', 'o3', 'nh3')
+		return AirQualityIndex::join('pollution_locations', 'pollution_locations.id', '=', 'air_quality_index.pollution_location_id')
+			->where('pollution_location_id', $location)
+			->select('pollution_locations.name', 'air_quality_index.id', 'air_quality_index.so2', 'air_quality_index.nox', 'air_quality_index.pm2', 'air_quality_index.rspm', 'air_quality_index.date', 'air_quality_index.co', 'air_quality_index.o3', 'air_quality_index.nh3')
 			->orderBy('id', 'desc');
 	}
 

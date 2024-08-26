@@ -24,7 +24,7 @@ Pollution Update List
             <thead>
                 <tr>
                     <th>Sr. No.</th>
-                    <th>Name</th>
+                    <th>Location</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -43,8 +43,8 @@ Pollution Update List
                         @endif
                     </td>
                     <td>
-                        <a href="{{ url('/admin/pollution/location/edit/'.$location->id) }}"><i class="nav-icon fa fa-edit"></i></a>
-                        <a href="{{ url('/admin/pollution/location/'.$location->id.'/air-quality/list') }}" title="Add Air Quality"><i class="nav-icon fa fa-eye"></i></a>
+                        <a href="{{ url('/admin/pollution/location/'.$location->id.'/air-quality/list') }}" title="Add Air Quality" class="btn btn-primary btn-sm">Add Air Quality</a>
+                        <a href="{{ url('/admin/pollution/location/edit/'.$location->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     </td>
                 </tr>
                 @endforeach

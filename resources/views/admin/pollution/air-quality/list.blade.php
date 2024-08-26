@@ -28,6 +28,7 @@
             <thead>
                 <tr>
                     <th>Sr. No.</th>
+                    <th>Location</th>
                     <th>Date</th>
                     <th>SO2</th>
                     <th>NOx</th>
@@ -102,57 +103,64 @@
                     },
                 },
                 {
+                    data: 'name',
+                    name: 'pollution_locations.name',
+                    render: function(data, type, row){
+                         return data;
+                    },
+                },
+                {
                     data: 'date',
-                    name: 'date',
+                    name: 'air_quality_index.date',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'so2',
-                    name: 'so2',
+                    name: 'air_quality_index.so2',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'nox',
-                    name: 'nox',
+                    name: 'air_quality_index.nox',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'pm2',
-                    name: 'pm2',
+                    name: 'air_quality_index.pm2',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'rspm',
-                    name: 'rspm',
+                    name: 'air_quality_index.rspm',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'co',
-                    name: 'co',
+                    name: 'air_quality_index.co',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'o3',
-                    name: 'o3',
+                    name: 'air_quality_index.o3',
                     render: function(data, type, row){
                          return data;
                     },
                 },
                 {
                     data: 'nh3',
-                    name: 'nh3',
+                    name: 'air_quality_index.nh3',
                     render: function(data, type, row){
                          return data;
                     },

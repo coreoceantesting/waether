@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use App\Models\YearlyData;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 class DashboardController extends Controller
 {
     /**
@@ -26,59 +28,67 @@ class DashboardController extends Controller
      */
     public function index(Request $req)
     {
-        if($req->ajax())
-        {
+        if ($req->ajax()) {
             $yearly_data = DB::table('yearly_data');
 
             return DataTables::of($yearly_data)
-                    ->addIndexColumn()
-                    ->editColumn('date', function ($data) {
-                        return date('d-m-Y', strtotime($data->date));
-                    })
-                    ->editColumn('time', function ($data) {
-                        return date('h:i A', strtotime($data->time));
-                    })
-                    ->toJson();
+                ->addIndexColumn()
+                ->editColumn('date', function ($data) {
+                    return date('d-m-Y', strtotime($data->date));
+                })
+                ->editColumn('time', function ($data) {
+                    return date('h:i A', strtotime($data->time));
+                })
+                ->toJson();
         }
         return view('admin.dashboard');
     }
 
     public function status_update(Request $request)
     {
-           $updatestatus = [
+        $updatestatus = [
             'status' => '0',
-            ];
+        ];
 
-            $changeStatus=DB::table('visitor')
-            ->where('id',$request->id)
+        $changeStatus = DB::table('visitor')
+            ->where('id', $request->id)
             ->update($updatestatus);
 
-        return redirect()->back()->with('success','Status Change Successfully');
+        return redirect()->back()->with('success', 'Status Change Successfully');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $hightide = YearlyData::find($id);
         // return $hightide;
         return view('admin.hightide.edit')->with(['hightide' => $hightide]);
     }
 
-    public function update(Request $req){
+    public function update(Request $req)
+    {
         $hightide = YearlyData::find($req->id);
         $hightide->date = $req->date;
         $hightide->time = $req->time;
         $hightide->height = $req->height;
         $hightide->message = $req->message;
-        if($hightide->save()){
+        if ($hightide->save()) {
             return redirect('/admin/dashboard')->with(['status' => "Hightide updated successfully"]);
         }
     }
 
-    public function delete(Request $req){
+    public function delete(Request $req)
+    {
         $hightide = YearlyData::find($req->id);
 
-        if($hightide->delete()){
+        if ($hightide->delete()) {
             return redirect('/admin/dashboard')->with(['status' => "Hightide removed successfully"]);
         }
     }
 
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

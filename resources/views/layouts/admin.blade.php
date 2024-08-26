@@ -78,7 +78,7 @@
                                 Logout
                             </p>
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </li>
@@ -104,7 +104,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{ asset('admin/user.png') }}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <a href="{{ url('admin/dashboard') }}" class="d-block">{{ auth()->user()->name }}</a>
