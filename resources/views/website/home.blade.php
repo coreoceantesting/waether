@@ -266,12 +266,18 @@
             @foreach ($locations as $location)
             var xaxis = [];
             var yaxis = [];
+            var tempMM = "";
+            var tempMessage = "";
             @foreach($location->weathers as $weather)
             xaxis.push("{{($weather->time) ? date('H:i', strtotime(str_replace(' ', '', $weather->time))) : date('H:i')}}")
             @if($setting->config_name == "rainy_day")
                 yaxis.push({{($weather->rain) ? $weather->rain : 0}})
+                tempMM = "mm";
+                tempMessage = "Rain Fall";
             @else
                 yaxis.push({{($weather->temp_out) ? $weather->temp_out : 0}})
+                tempMM = "ºC";
+                tempMessage = "Temparature";
             @endif
             @endforeach
             
@@ -292,7 +298,7 @@
                 yAxis: {
                     labels: {
                         formatter: function() {
-                            return this.value+'mm';
+                            return this.value+''+tempMM;
                         }
                     }
                 },
@@ -300,16 +306,16 @@
                     enabled: false
                 },
                 series: [ {
-                    name: 'Rainfall',
+                    name: tempMessage,
                     type: 'spline',
                     data: yaxis,
                     tooltip: {
-                        valueSuffix: ' mm'
+                        valueSuffix: tempMM
                     }
                 }]
             });
             chart.yAxis[0].axisTitle.attr({
-                text: 'Rain Fall'
+                text: tempMessage
             });
             @endforeach
         })
