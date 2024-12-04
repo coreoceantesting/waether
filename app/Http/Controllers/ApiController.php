@@ -18,12 +18,17 @@ class ApiController extends Controller
             foreach ($datas['data'] as $data) {
 
                 $datetime = \Carbon\Carbon::parse($data['datetime'])->format('Y-m-d H:i:s');
-                $check = Weather::where('datetime', $datetime)
+                $weather = Weather::where('datetime', $datetime)
                     ->where('location_id', $data['location_id'])
-                    ->doesntExist();
+                    ->first();
 
-                if ($check) {
-                    Weather::create($data);
+                if ($weather) {
+                    Weather::where('id', $weather->id)->where('location_id', $data['location_id'])
+                        ->update([
+                            'date' => $data['date'],
+                            'time' => $data['time'],
+                            'datetime' => $data['datetime']
+                        ]);
                     // $weatherValue = [
                     //     'location_id' => $data['location_id'],
                     //     'date' => $data['date'],
@@ -59,17 +64,7 @@ class ApiController extends Controller
                     //     'datetime' => $data['datetime'],
                     // ];
                 } else {
-                    $weather = Weather::where('datetime', $data['date'] . ' ' . $data['time'])
-                        ->where('location_id', $data['location_id'])
-                        ->first();
-                    if ($weather) {
-                        Weather::where('id', $weather->id)->where('location_id', $data['location_id'])
-                            ->update([
-                                'date' => $data['date'],
-                                'time' => $data['time'],
-                                'datetime' => $data['datetime']
-                            ]);
-                    }
+                    Weather::create($data);
                 }
             }
             // DB::commit();
