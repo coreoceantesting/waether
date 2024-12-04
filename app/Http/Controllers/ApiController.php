@@ -11,14 +11,13 @@ class ApiController extends Controller
 {
     public function store(Request $request)
     {
-        Log::info($request);
-        DB::beginTransaction();
+        // DB::beginTransaction();
         try {
             $datas = $request->all();
 
             foreach ($datas['data'] as $data) {
 
-                $check = Weather::where('datetime', $data['date'] . ' ' . $data['time'])
+                $check = Weather::where('datetime', date('Y-m-d H:i:s', strtotime($data['datetime'])))
                     ->where('location_id', $data['location_id'])
                     ->doesntExist();
 
@@ -71,14 +70,14 @@ class ApiController extends Controller
                     }
                 }
             }
-            DB::commit();
+            // DB::commit();
             return response()->json([
                 'status' => 200,
                 'success' => 'Data inserted proper'
             ]);
         } catch (\Exception $e) {
             Log::info($e);
-            DB::rollback();
+            // DB::rollback();
             return response()->json([
                 'status' => 503,
                 'error' => 'Something went wrong'
