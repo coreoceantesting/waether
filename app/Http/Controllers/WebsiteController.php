@@ -40,7 +40,8 @@ class WebsiteController extends Controller
             $weathers = Weather::join('locations', 'weathers.location_id', '=', 'locations.id')
                 ->select('locations.name as name', 'weathers.date', 'weathers.time', 'weathers.rain', 'weathers.wind_speed', 'weathers.in_temp', 'weathers.in_hum', 'weathers.datetime', 'weathers.location_id', 'weathers.hi_temp', 'weathers.low_temp')
                 ->where('locations.status', 1)
-                ->orderBy('weathers.datetime', 'desc');
+                ->orderBy('weathers.datetime', 'desc')
+                ->where('weathers.datetime', "<=", date('Y-m-d h:i:s'));
 
             if ($req->location != "") {
                 $weathers = $weathers->where('weathers.location_id', $req->location);

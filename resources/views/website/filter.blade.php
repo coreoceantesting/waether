@@ -249,7 +249,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row){
-                                 return data+"mm";
+                                 return data+"km/hr";
                             },
                         },
                         {
@@ -258,7 +258,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row){
-                                 return data+"mm";
+                                 return data+"°C";
                             },
                         },
                         {
@@ -267,7 +267,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row){
-                                 return data+"mm";
+                                 return data+"°C";
                             },
                         },
                         {
@@ -276,7 +276,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row){
-                                 return data+"mm";
+                                 return data+"°C";
                             },
                         },
                         {
@@ -285,7 +285,7 @@
                             orderable: false,
                             searchable: false,
                             render: function(data, type, row){
-                                 return data+"mm";
+                                 return data+"%";
                             },
                         },
                         {
