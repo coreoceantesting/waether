@@ -11,7 +11,7 @@ class ApiController extends Controller
 {
     public function store(Request $request)
     {
-        // DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $datas = $request->all();
 
@@ -21,7 +21,7 @@ class ApiController extends Controller
                 $weather = Weather::where('datetime', $datetime)
                     ->where('location_id', $data['location_id'])
                     ->first();
-
+                Log::info($data);
                 if ($weather) {
                     Weather::where('id', $weather->id)->where('location_id', $data['location_id'])
                         ->update([
