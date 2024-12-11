@@ -67,14 +67,14 @@ class ApiController extends Controller
                     Weather::create($data);
                 }
             }
-            // DB::commit();
+            DB::commit();
             return response()->json([
                 'status' => 200,
                 'success' => 'Data inserted proper'
             ]);
         } catch (\Exception $e) {
             Log::info($e);
-            // DB::rollback();
+            DB::rollback();
             return response()->json([
                 'status' => 503,
                 'error' => 'Something went wrong'
