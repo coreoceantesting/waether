@@ -43,10 +43,7 @@
                                     <option value='so2'>SO2</option>
                                     <option value='nox'>NOX</option>
                                     <option value='pm2'>PM2.5</option>
-                                    <option value='rspm'>RSPM</option>
-                                    <option value='co'>CO</option>
-                                    <option value='o3'>O3</option>
-                                    <option value='nh3'>NH3</option>
+                                    <option value='rspm'>PM10</option>
                                 </select>
                             </div>
                         </div>
@@ -215,45 +212,47 @@
                 <div class="col-12"><h5>Area Wise AQI Details:</h5></div>
 
                 @foreach($climateMonitorings as $climateMonitoring)
-                <div class="col-md-6">     
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr class="bg-info">
-                                <th colspan="7">{{ $climateMonitoring['name'] }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="background-color: coral;">
-                                <th>Sr.No</th>
-                                <th>Date</th>
-                                <th>SO2 (μg/m3)</th>
-                                <th>NOx (μg/m3)</th>
-                                <th>PM2.5 (µg/m3)</th>
-                                <th>RSPM (μg/m3)</th>
-                                <th>AQI</th>
-                            </tr>
-                            
-                            @php $count = 1; @endphp
-                            @foreach($climateMonitoring['aqi'] as $airQuality)
-                            <tr class="warning">
-                                <td>{{ $count++ }}</td>
-                                <td>{{ date('d-m-Y', strtotime($airQuality['date'])) }}</td>
-                                <td>{{ $airQuality['so2'] ?? 0 }}</td>
-                                <td>{{ $airQuality['nox'] ?? 0 }}</td>
-                                <td>{{ $airQuality['pm2'] ?? 0 }}</td>
-                                <td>{{ $airQuality['rspm'] ?? 0 }}</td>
-                                <td>{{ round($airQuality['aqi'], 2) ?? 0 }}</td>
-                            </tr>
-                            @endforeach
-                            <tfoot>
-                                <tr align="right">
-                                    <th colspan="7">
-                                        <a href="{{ url('pollution-air-quality') }}?id={{ base64_encode($climateMonitoring['id']) }}" class="btn btn-sm btn-primary">Click for Details</a>
-                                    </th>
+                <div class="col-md-6">  
+                    <div class="table-responsive">   
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="bg-info">
+                                    <th colspan="7">{{ $climateMonitoring['name'] }}</th>
                                 </tr>
-                            </tfoot>
-                        </tbody>
-                  </table>                                
+                            </thead>
+                            <tbody>
+                                <tr style="background-color: coral;">
+                                    <th>Sr.No</th>
+                                    <th>Date</th>
+                                    <th>SO2 (μg/m3)</th>
+                                    <th>NOx (μg/m3)</th>
+                                    <th>PM2.5 (µg/m3)</th>
+                                    <th>PM10 (μg/m3)</th>
+                                    <th>AQI</th>
+                                </tr>
+                                
+                                @php $count = 1; @endphp
+                                @foreach($climateMonitoring['aqi'] as $airQuality)
+                                <tr class="warning">
+                                    <td>{{ $count++ }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($airQuality['date'])) }}</td>
+                                    <td>{{ $airQuality['so2'] ?? 0 }}</td>
+                                    <td>{{ $airQuality['nox'] ?? 0 }}</td>
+                                    <td>{{ $airQuality['pm2'] ?? 0 }}</td>
+                                    <td>{{ $airQuality['rspm'] ?? 0 }}</td>
+                                    <td>{{ round($airQuality['aqi'], 2) ?? 0 }}</td>
+                                </tr>
+                                @endforeach
+                                <tfoot>
+                                    <tr align="right">
+                                        <th colspan="7">
+                                            <a href="{{ url('pollution-air-quality') }}?id={{ base64_encode($climateMonitoring['id']) }}" class="btn btn-sm btn-primary">Click for Details</a>
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </tbody>
+                        </table> 
+                    </div>                              
                 </div>
                 @endforeach
                 

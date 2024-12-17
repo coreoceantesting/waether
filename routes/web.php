@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PollutionAirQualityController;
 use App\Http\Controllers\Admin\DeviceController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\ScriptController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

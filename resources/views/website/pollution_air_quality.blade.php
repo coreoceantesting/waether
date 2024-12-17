@@ -58,7 +58,8 @@
                                 <div class="col-lg-3 col-12">
                                     <div class="form-group">
                                         <label class="text-dark">Select Location</label>
-                                        <select class="form-control" id="location" name="location">
+                                        <select class="form-select" id="location" name="location">
+                                            <option value="">Select All</option>
                                             @foreach($locations as $location)
                                             <option @if($location->id == base64_decode(Request()->id))selected @endif value="{{$location->id}}">{{$location->name}}</option>
                                             @endforeach
@@ -77,10 +78,11 @@
                                 <thead class="table-info">
                                     <tr>
                                         <th>Sr No.</th>
+                                        <th>Location</th>
                                         <th>Date</th>
                                         <th>SO2(ug/m3)</th>
                                         <th>Nox(ug/m3)</th>
-                                        <th>RSPM(ug/m3)</th>
+                                        <th>PM10(ug/m3)</th>
                                         <th>PM2.5(ug/m3)</th>
                                         <th>CO (μg/m3)</th>
                                         <th>O3 (μg/m3)</th>
@@ -169,6 +171,13 @@
                             name: 'DT_RowIndex',
                             orderable: false,
                             searchable: false,
+                            render: function(data, type, row){
+                                 return data;
+                            },
+                        },
+                        {
+                            data: 'name',
+                            name: 'pollution_locations.name',
                             render: function(data, type, row){
                                  return data;
                             },

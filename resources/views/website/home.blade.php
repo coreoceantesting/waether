@@ -59,14 +59,14 @@
                                     <span class="color-dark text-start">Min Temp Out</span>
                                     <span class="color-dark text-end">{{($minTempOut) ? round($minTempOut, 2) : 0}}<b style="top: -1em;font-size: 10px;position: relative;">o</b>C</span></span>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-center mb-24">
+                                {{-- <div class="d-flex align-items-center justify-content-center mb-24">
                                     <span class="color-dark text-start">Max Heat Index</span>
                                     <span class="color-dark text-end">{{($maxHeatIndex) ? round($maxHeatIndex, 2) : 0}}<b style="top: -1em;font-size: 10px;position: relative;">o</b>C</span></span>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center mb-24">
                                     <span class="color-dark text-start">Min Heat Index</span>
                                     <span class="color-dark text-end">{{($minHeatIndex) ? round($minHeatIndex, 2) : 0}}<b style="top: -1em;font-size: 10px;position: relative;">o</b>C</span></span>
-                                </div>
+                                </div> --}}
                             @endif
                         </div>
                     </div>

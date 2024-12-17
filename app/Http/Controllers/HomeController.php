@@ -60,13 +60,13 @@ class HomeController extends Controller
             $maxTempOut = $this->homeRepository->getMaxTempOut();
 
             // to get total max heat Index
-            $maxHeatIndex = $this->homeRepository->getMaxHeatIndex();
+            // $maxHeatIndex = $this->homeRepository->getMaxHeatIndex();
 
-            // to get total rain
-            $minHeatIndex = $this->homeRepository->getMinHeatIndex();
+            // // to get total rain
+            // $minHeatIndex = $this->homeRepository->getMinHeatIndex();
 
 
-            return view('website.home')->with(['locations' => $locations, 'data' => $data, 'setting' => $setting, 'lastDayTemp' => $lastDayTemp, 'bannerImage' => $bannerImage, 'minTempOut' => $minTempOut, 'maxTempOut' => $maxTempOut, 'maxHeatIndex' => $maxHeatIndex, 'minHeatIndex' => $minHeatIndex]);
+            return view('website.home')->with(['locations' => $locations, 'data' => $data, 'setting' => $setting, 'lastDayTemp' => $lastDayTemp, 'bannerImage' => $bannerImage, 'minTempOut' => $minTempOut, 'maxTempOut' => $maxTempOut]);
         }
         // return $lastDayTemp;
 

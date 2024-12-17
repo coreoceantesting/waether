@@ -142,18 +142,18 @@ class WebsiteController extends Controller
     public function pollutionAirQuality(Request $req)
     {
         if ($req->ajax()) {
-            $airQuality = AirQualityIndex::select('date', 'so2', 'nox', 'rspm', 'pm2', 'co', 'o3', 'nh3');
+            $airQuality = AirQualityIndex::leftJoin('pollution_locations', 'pollution_locations.id', '=', 'air_quality_index.pollution_location_id')->select('air_quality_index.date', 'air_quality_index.so2', 'air_quality_index.nox', 'air_quality_index.rspm', 'air_quality_index.pm2', 'air_quality_index.co', 'air_quality_index.o3', 'air_quality_index.nh3', 'pollution_locations.name');
 
-            if ($req->location != "") {
-                $airQuality = $airQuality->where('pollution_location_id', $req->location);
+            if (isset($req->location) && $req->location != "") {
+                $airQuality = $airQuality->where('air_quality_index.pollution_location_id', $req->location);
             }
 
-            if ($req->start_date != "") {
-                $airQuality = $airQuality->where('date', '>=', date('Y-m-d', strtotime($req->start_date)));
+            if (isset($req->start_date) && $req->start_date != "") {
+                $airQuality = $airQuality->where('air_quality_index.date', '>=', date('Y-m-d', strtotime($req->start_date)));
             }
 
-            if ($req->end_date != "") {
-                $airQuality = $airQuality->where('date', '<=', date('Y-m-d', strtotime($req->end_date)));
+            if (isset($req->end_date) && $req->end_date != "") {
+                $airQuality = $airQuality->where('air_quality_index.date', '<=', date('Y-m-d', strtotime($req->end_date)));
             }
 
             return DataTables::of($airQuality)
