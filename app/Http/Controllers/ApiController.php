@@ -15,10 +15,10 @@ class ApiController extends Controller
         DB::beginTransaction();
         try {
             $datas = $request->all();
-            ApiWeatherData::create($datas);
 
             foreach ($datas['data'] as $data) {
 
+                ApiWeatherData::create($data);
                 $datetime = \Carbon\Carbon::parse($data['datetime'])->format('Y-m-d H:i:s');
                 $weather = Weather::where('datetime', $datetime)
                     ->where('location_id', $data['location_id'])
