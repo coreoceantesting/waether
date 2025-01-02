@@ -28,7 +28,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Air Monitoring Location</label>
-                                <select class="form-control" id="airMonitoring">
+                                <select class="form-select" id="airMonitoring">
                                     @foreach($locations as $location)
                                     <option value="{{$location->id}}">{{$location->name}}</option>
                                     @endforeach
@@ -39,11 +39,11 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Select Pollutant</label>
-                                <select class="form-control" id="selectPollutant">
+                                <select class="form-select" id="selectPollutant">
                                     <option value='so2'>SO2</option>
                                     <option value='nox'>NOX</option>
                                     <option value='pm2'>PM2.5</option>
-                                    <option value='rspm'>PM10</option>
+                                    <option value='pm10'>PM10</option>
                                 </select>
                             </div>
                         </div>
@@ -170,9 +170,9 @@
                                 <td>80 μg/m3</td>
                             </tr>
                             <tr class="warning">
-                                <td>RSPM(μg/m3)</td>
-                                <td>{{ $climateMinMax->avg('rspm') }}</td>
-                                <td>{{ $climateMinMax->avg('rspm') }}</td>
+                                <td>PM10(μg/m3)</td>
+                                <td>{{ $climateMinMax->avg('pm10') }}</td>
+                                <td>{{ $climateMinMax->avg('pm10') }}</td>
                                 <td>100 μg/m3</td>
                             </tr>
                         </tbody>
@@ -201,9 +201,9 @@
                                 <td>{{ $climateMinMax->max('nox') }}</td>
                             </tr>
                             <tr class="warning">
-                                <td>RSPM(μg/m3)</td>
-                                <td>{{ $climateMinMax->min('rspm') }}</td>
-                                <td>{{ $climateMinMax->max('rspm') }}</td>
+                                <td>PM10(μg/m3)</td>
+                                <td>{{ $climateMinMax->min('pm10') }}</td>
+                                <td>{{ $climateMinMax->max('pm10') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -239,7 +239,7 @@
                                     <td>{{ $airQuality['so2'] ?? 0 }}</td>
                                     <td>{{ $airQuality['nox'] ?? 0 }}</td>
                                     <td>{{ $airQuality['pm2'] ?? 0 }}</td>
-                                    <td>{{ $airQuality['rspm'] ?? 0 }}</td>
+                                    <td>{{ $airQuality['pm10'] ?? 0 }}</td>
                                     <td>{{ round($airQuality['aqi'], 2) ?? 0 }}</td>
                                 </tr>
                                 @endforeach

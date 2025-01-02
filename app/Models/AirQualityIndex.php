@@ -12,10 +12,10 @@ class AirQualityIndex extends Model
 
     protected $table = "air_quality_index";
 
+    protected $fillable = ['pollution_location_id', 'date', 'so2', 'nox', 'pm2', 'pm10'];
+
     public function pollutionLocation()
     {
         return $this->belongsTo(PollutionLocation::class, 'pollution_location_id', 'id');
     }
-
-    protected $fillable = ['pollution_location_id', 'date', 'so2', 'nox', 'pm2', 'rspm', 'co', 'o3', 'nh3'];
 }

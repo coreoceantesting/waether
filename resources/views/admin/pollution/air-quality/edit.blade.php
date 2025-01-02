@@ -37,20 +37,8 @@
                         <input required="" type="number" min="0" step="any" value="{{ $airQuality->pm2 }}" name="pm2" class="form-control">
                         <br>
 
-                        <label>RSPM(μg/m3)</label>
-                        <input required="" type="number" value="{{ $airQuality->rspm }}" min="0" step="any" name="rspm" class="form-control">
-                        <br>
-
-                        <label>CO(μg/m3)</label>
-                        <input required="" type="number" value="{{ $airQuality->co }}" min="0" step="any" name="co" class="form-control">
-                        <br>
-
-                        <label>O3(μg/m3)</label>
-                        <input required="" type="number" value="{{ $airQuality->o3 }}" min="0" step="any" name="o3" class="form-control">
-                        <br>
-
-                        <label>NH3(μg/m3)</label>
-                        <input required="" type="number" value="{{ $airQuality->nh3 }}" min="0" step="any" name="nh3" class="form-control">
+                        <label>PM10(μg/m3)</label>
+                        <input required="" type="number" value="{{ $airQuality->pm10 }}" min="0" step="any" name="pm10" class="form-control">
                         <br>
                         <a href="{{url('/admin/pollution/location/'.Request()->location.'/air-quality/list')}}" class="btn btn-primary"> Cancel </a>
                         <button class="btn btn-success"> Save </button>

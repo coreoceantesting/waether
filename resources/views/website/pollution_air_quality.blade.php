@@ -84,9 +84,6 @@
                                         <th>Nox(ug/m3)</th>
                                         <th>PM10(ug/m3)</th>
                                         <th>PM2.5(ug/m3)</th>
-                                        <th>CO (μg/m3)</th>
-                                        <th>O3 (μg/m3)</th>
-                                        <th>NH3 (μg/m3)</th>
                                         <th>AQI</th>
                                     </tr>
                                 </thead>
@@ -204,8 +201,8 @@
                             },
                         },
                         {
-                            data: 'rspm',
-                            name: 'rspm',
+                            data: 'pm10',
+                            name: 'pm10',
                             render: function(data, type, row){
                                  return data;
                             },
@@ -213,27 +210,6 @@
                         {
                             data: 'pm2',
                             name: 'pm2',
-                            render: function(data, type, row){
-                                 return data;
-                            },
-                        },
-                        {
-                            data: 'co',
-                            name: 'co',
-                            render: function(data, type, row){
-                                 return data;
-                            },
-                        },
-                        {
-                            data: 'o3',
-                            name: 'o3',
-                            render: function(data, type, row){
-                                 return data;
-                            },
-                        },
-                        {
-                            data: 'nh3',
-                            name: 'nh3',
                             render: function(data, type, row){
                                  return data;
                             },

@@ -18,10 +18,7 @@ return new class extends Migration
             $table->float('so2', 5, 2)->default(0);
             $table->float('nox', 5, 2)->default(0);
             $table->float('pm2', 5, 2)->default(0);
-            $table->float('rspm', 5, 2)->default(0);
-            $table->float('co', 5, 2)->default(0);
-            $table->float('o3', 5, 2)->default(0);
-            $table->float('nh3', 5, 2)->default(0);
+            $table->float('pm10', 5, 2)->default(0);
             $table->foreign('pollution_location_id')->references('id')->on('pollution_locations');
             $table->timestamps();
         });

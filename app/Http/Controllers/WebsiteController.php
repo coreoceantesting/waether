@@ -142,7 +142,7 @@ class WebsiteController extends Controller
     public function pollutionAirQuality(Request $req)
     {
         if ($req->ajax()) {
-            $airQuality = AirQualityIndex::leftJoin('pollution_locations', 'pollution_locations.id', '=', 'air_quality_index.pollution_location_id')->select('air_quality_index.date', 'air_quality_index.so2', 'air_quality_index.nox', 'air_quality_index.rspm', 'air_quality_index.pm2', 'air_quality_index.co', 'air_quality_index.o3', 'air_quality_index.nh3', 'pollution_locations.name');
+            $airQuality = AirQualityIndex::leftJoin('pollution_locations', 'pollution_locations.id', '=', 'air_quality_index.pollution_location_id')->select('air_quality_index.date', 'air_quality_index.so2', 'air_quality_index.nox', 'air_quality_index.pm10', 'air_quality_index.pm2', 'pollution_locations.name');
 
             if (isset($req->location) && $req->location != "") {
                 $airQuality = $airQuality->where('air_quality_index.pollution_location_id', $req->location);
@@ -161,7 +161,7 @@ class WebsiteController extends Controller
                 ->editColumn('date', function ($data) {
                     return date('d-m-Y', strtotime($data->date));
                 })->editColumn('aqi', function ($data) {
-                    return round(max([$this->websiteRepository->getSo2AirQualityIndexAttr($data->so2), $this->websiteRepository->getNoxAirQualityIndexAttr($data->nox), $this->websiteRepository->getRspmAirQualityIndexAttr($data->rspm), $this->websiteRepository->getPm2AirQualityIndexAttr($data->pm2), $this->websiteRepository->getCoAirQualityIndexAttr($data->co), $this->websiteRepository->getO3AirQualityIndexAttr($data->o3), $this->websiteRepository->getNh3AirQualityIndexAttr($data->nh3)]), 2);
+                    return round(max([$this->websiteRepository->getSo2AirQualityIndexAttr($data->so2), $this->websiteRepository->getNoxAirQualityIndexAttr($data->nox), $this->websiteRepository->getPm10AirQualityIndexAttr($data->pm10), $this->websiteRepository->getPm2AirQualityIndexAttr($data->pm2)]), 2);
                 })
                 ->toJson();
         }

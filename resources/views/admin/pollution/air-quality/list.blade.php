@@ -33,10 +33,7 @@
                     <th>SO2</th>
                     <th>NOx</th>
                     <th>PM2.5</th>
-                    <th>RSPM</th>
-                    <th>CO</th>
-                    <th>O3</th>
-                    <th>NH3</th>
+                    <th>PM10</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -138,29 +135,8 @@
                     },
                 },
                 {
-                    data: 'rspm',
-                    name: 'air_quality_index.rspm',
-                    render: function(data, type, row){
-                         return data;
-                    },
-                },
-                {
-                    data: 'co',
-                    name: 'air_quality_index.co',
-                    render: function(data, type, row){
-                         return data;
-                    },
-                },
-                {
-                    data: 'o3',
-                    name: 'air_quality_index.o3',
-                    render: function(data, type, row){
-                         return data;
-                    },
-                },
-                {
-                    data: 'nh3',
-                    name: 'air_quality_index.nh3',
+                    data: 'pm10',
+                    name: 'air_quality_index.pm10',
                     render: function(data, type, row){
                          return data;
                     },
