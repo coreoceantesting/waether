@@ -161,7 +161,7 @@ class WebsiteController extends Controller
                 ->editColumn('date', function ($data) {
                     return date('d-m-Y', strtotime($data->date));
                 })->editColumn('aqi', function ($data) {
-                    return round(max([$this->websiteRepository->getSo2AirQualityIndexAttr($data->so2), $this->websiteRepository->getNoxAirQualityIndexAttr($data->nox), $this->websiteRepository->getPm10AirQualityIndexAttr($data->pm10), $this->websiteRepository->getPm2AirQualityIndexAttr($data->pm2)]), 2);
+                    return round(max([$this->websiteRepository->getSo2AirQualityIndexAttr($data->so2), $this->websiteRepository->getNoxAirQualityIndexAttr($data->nox), $this->websiteRepository->getPm10AirQualityIndexAttr($data->pm10) /*, $this->websiteRepository->getPm2AirQualityIndexAttr($data->pm2)*/]), 2);
                 })
                 ->toJson();
         }
