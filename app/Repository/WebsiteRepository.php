@@ -25,7 +25,7 @@ class WebsiteRepository
 			$aqiDataArr = [];
 			foreach ($aqis as $aqi) {
 				$aqiArr = [];
-				$aqiArr = [$this->getSo2AirQualityIndexAttr($aqi->so2), $this->getNoxAirQualityIndexAttr($aqi->nox), $this->getPm2AirQualityIndexAttr($aqi->pm2)/*, $this->getPm10AirQualityIndexAttr($aqi->pm10)*/, $this->getNh3AirQualityIndexAttr($aqi->nh3)];
+				$aqiArr = [$this->getSo2AirQualityIndexAttr($aqi->so2), $this->getNoxAirQualityIndexAttr($aqi->nox), /*$this->getPm2AirQualityIndexAttr($aqi->pm2),*/ $this->getPm10AirQualityIndexAttr($aqi->pm10),, $this->getNh3AirQualityIndexAttr($aqi->nh3)];
 
 
 				$aqiDataArr[] = [
